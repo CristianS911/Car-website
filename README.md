@@ -69,7 +69,7 @@ Day1week2 (w2) ( Wach in raw)
     <h1 class="text-3xl font-bold text-center mb-8">🚗 Luxury Car Gallery 🚗</h1>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxW_Ima2UvWlCRCT1n1jCFdhRat-s8sUK7pQ&s"rounded-xl shadow-lg" />
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxW_Ima2UvWlCRCT1n1jCFdhRat-s8sUK7pQ&s" class="rounded-xl shadow-lg" />
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReH9fJERh9aU7OsmC3KYu40Ifs-dlRw962_A&s" class="rounded-xl shadow-lg" />
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeoDx9gkbVVGlaaqO33ybkNLzftacoYxv0WQ&s" class="rounded-xl shadow-lg" />
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWtyoKr8-EgU3I8xH4GlEJiPOqPszxHJLWcw&s" class="rounded-xl shadow-lg" />
@@ -81,40 +81,56 @@ Day1week2 (w2) ( Wach in raw)
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNAJdBeuqRpLoNNITBW-9vdIOV3uqbQVoq3Q&s" class="rounded-xl shadow-lg" />
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkVUlCFjrcAd8KtMXDNmqP4SA_nhCTINkwow&s" class="rounded-xl shadow-lg" />
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9u-C4KJbMEnHI1yYgnzz1wua0mhVr6S3DGA&s" class="rounded-xl shadow-lg" />
-  
     </div>
   </div>
 
   <script>
-    // Show login form
     function showLogin() {
       document.getElementById('main').style.display = 'none';
       document.getElementById('login').style.display = 'block';
     }
 
-    // Show signup form
     function showSignup() {
       document.getElementById('main').style.display = 'none';
       document.getElementById('signup').style.display = 'block';
     }
 
-    // Go back to main auth page
     function goBack() {
       document.getElementById('login').style.display = 'none';
       document.getElementById('signup').style.display = 'none';
       document.getElementById('main').style.display = 'block';
     }
 
-    // Handle form submission (login/signup)
     function handleSubmit(event) {
       event.preventDefault();
+
+      const form = event.target;
+      const email = form.querySelector('input[type="email"]')?.value.trim();
+      const password = form.querySelector('input[type="password"]')?.value;
+      const phoneInput = form.querySelector('input[type="tel"]');
+      const phone = phoneInput ? phoneInput.value.trim() : null;
+
+      if (!email.endsWith('@gmail.com')) {
+        alert('Email-ul trebuie să fie de tip @gmail.com');
+        return;
+      }
+
+      if (password.length < 8) {
+        alert('Parola trebuie să conțină minim 8 caractere.');
+        return;
+      }
+
+      if (phoneInput && !/^\d{8}$/.test(phone)) {
+        alert('Numărul de telefon trebuie să conțină exact 8 cifre.');
+        return;
+      }
+
       document.getElementById('main').style.display = 'none';
       document.getElementById('login').style.display = 'none';
       document.getElementById('signup').style.display = 'none';
       document.getElementById('gallery').style.display = 'block';
     }
 
-    // Log out
     function logOut() {
       document.getElementById('gallery').style.display = 'none';
       document.getElementById('main').style.display = 'block';
